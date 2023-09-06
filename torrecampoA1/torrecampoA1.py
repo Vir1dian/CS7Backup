@@ -8,7 +8,7 @@ def part1():
         days = int(input('Enter number of POSSIBLE days worked last week: '))
     hours_per_week = -1
     while hours_per_week > 7*24 or hours_per_week < 1:
-        hours_per_week = int(input('Enter number of POSSIBLE hours worked for the week: '))
+        hours_per_week = float(input('Enter number of POSSIBLE hours worked for the week: '))
     print('You averaged', hours_per_week / days, 'hours per day.')
 
 
