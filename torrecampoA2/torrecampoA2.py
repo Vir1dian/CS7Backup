@@ -1,11 +1,14 @@
+import random
+
+
 def aligner(width, a, b, dollar_sign=None, dollar_space=None):
     if dollar_sign:
-        b = dollar_sign + ' '*(dollar_space + 2 - len(b)) + b
+        b = dollar_sign + ' ' * (dollar_space + 2 - len(b)) + b
         # dollar_sign must be used with dollar_space to create an even line of dollar signs
         # dollar_space designates the space for the characters after the dollar sign $_____X.XX
         # the + 2 after dollar_space here is just to customize how far the dollar sign is from the chosen dollar_space
     if len(a) > width - len(b):
-        a = a[:len(b)+4] + '...'
+        a = a[:len(b) + 4] + '...'
         # hides string overflow within an ellipsis ... if number is too large or width is too small
     return a + ' ' * (width - len(a) - len(b)) + b
     # dynamically creates space between the string a (left side) and the string b (right side)
@@ -18,7 +21,7 @@ def part1():
     annual_rate = 0.01 * float(input('Enter an annual interest rate: '))
     # annual_rate is converted into percent value upon input
     balance_annual_comp = principal * (1 + annual_rate)
-    balance_daily_comp = principal * (1 + annual_rate/365) ** 365
+    balance_daily_comp = principal * (1 + annual_rate / 365) ** 365
     interest_annual_comp = balance_annual_comp - principal
     interest_daily_comp = balance_daily_comp - principal
     longest_number = len(format(balance_daily_comp, '.2f'))
@@ -27,10 +30,11 @@ def part1():
     print('', '-' * 52, '\n',
           aligner(50, 'Principal', format(principal, '.2f'), '$', longest_number), '\n',
           aligner(50, 'Annual Interest Rate', format(annual_rate * 100, '.2f')), '%', '\n',
-          aligner(50, 'Interest Compounded Annually (Y1)', format(interest_annual_comp, '.2f'), '$', longest_number), '\n',
-          aligner(50, 'Balance', format(balance_annual_comp, '.2f'),'$', longest_number), '\n',
-          aligner(50, 'Interest Compounded Daily (Y1)', format(interest_daily_comp, '.2f'),'$', longest_number), '\n',
-          aligner(50, 'Balance', format(balance_daily_comp, '.2f'),'$', longest_number), '\n',
+          aligner(50, 'Interest Compounded Annually (Y1)', format(interest_annual_comp, '.2f'), '$', longest_number),
+          '\n',
+          aligner(50, 'Balance', format(balance_annual_comp, '.2f'), '$', longest_number), '\n',
+          aligner(50, 'Interest Compounded Daily (Y1)', format(interest_daily_comp, '.2f'), '$', longest_number), '\n',
+          aligner(50, 'Balance', format(balance_daily_comp, '.2f'), '$', longest_number), '\n',
           '-' * 52)
     # used format() instead of round() to accommodate cases such as 130.10, which would display as 130.1
     # even if function was typed as round(130.10, 2)
@@ -39,7 +43,7 @@ def part1():
 def part2():
     height = float(input('Enter a height in inches: '))
     width = float(input('Enter a width in inches: '))
-    print('Screen size (diagonal): ', round((height**2 + width**2)**0.5), 'inches')
+    print('Screen size (diagonal): ', round((height ** 2 + width ** 2) ** 0.5, 1), 'inches')
 
 
 def part3():
@@ -57,15 +61,35 @@ def part3():
 
 
 def part4():
-    x = 1
+    input('Press "Enter" to roll two dice')
+    die1 = random.randint(1, 6)
+    die2 = random.randint(1, 6)
+    point = die1 + die2
+    print('\n[  First Die:', die1, '  ] [  Second Die:', die2, '  ]')
+    print('Your point:  <  ', point, '  >')
+    if point == 7 or point == 11:
+        print('+++  You WIN! :D  +++')
+    elif point == 2 or point == 3 or point == 12:
+        print('***  You LOSE! :(  ***')
+    else:
+        input('Press "Enter" to play again')
+        die1 = random.randint(1, 6)
+        die2 = random.randint(1, 6)
+        print('\n[  First Die:', die1, '  ] [  Second Die:', die2, '  ]')
+        print('Point:  <  ', point, '  >  Sum:  {  ', die1 + die2, '  }')
+        if die1 + die2 == point:
+            print('+++  You WIN! :D  +++')
+        else:
+            print('***  You LOSE! :(  ***')
 
 
 if __name__ == '__main__':
-    print('PART 1')
+    print('\nPART 1')
     part1()
-    print('PART 2')
+    print('\nPART 2')
     part2()
-    print('PART 3')
+    print('\nPART 3')
     part3()
-    print('PART 4')
+    print('\nPART 4')
     part4()
+    print('\nEND OF ASSIGNMENT')
