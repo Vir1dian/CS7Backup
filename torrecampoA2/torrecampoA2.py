@@ -1,3 +1,7 @@
+# Assignment 2
+# CS7 - Section D01
+# September 15, 2023,
+# Gavin Torrecampo
 import random
 
 
