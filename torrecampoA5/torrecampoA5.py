@@ -1,6 +1,6 @@
-# Assignment X
+# Assignment 5
 # CS7 - Section D01
-# Month Day, Year,
+# September 28, 2023,
 # Gavin Torrecampo
 import random
 
