@@ -71,5 +71,5 @@ def classwork():
 
 if __name__ == '__main__':
     # classwork()
-    # part1()
+    part1()
     part2()
