@@ -1,0 +1,12 @@
+ART  Art
+BIOS Biological Sciences
+COMM Communications Studies
+COMSCComputer Science
+ENGR Engineering
+FIN  Finance
+MATH Mathematical Science
+PHYS Physical Education
+PHYSCPhysics
+POLS Political Science
+PSYC Psychology
+REST Culinary Arts
