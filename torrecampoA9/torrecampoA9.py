@@ -30,6 +30,8 @@ def part1():
         print('Roll', align_r(str(i), 2), 'count',
               align_r(str(sushi_roll[i]), len(str(roll_count))),
               align_r(roll_percent, 6), '%')
+
+    # (See below) This is where the fun begins >:D
     if roll_count <= 1000:
         print('-Histogram (Vertical) Format-')
         hist_header = '      |'
@@ -44,7 +46,7 @@ def part1():
         print(hist_header)  # Rolled numbers
         print(hist_header_2)  # Count of rolls for each number
         largest_count = sushi_roll[max(sushi_roll, key=sushi_roll.get)]
-        # Get roll number with the largest count, used to get size of the histogram for space efficiency
+        # ^ Get roll number with the largest count, used to get size of the histogram for space efficiency
         incr = 1  # To be used as the scale of the histogram
         if largest_count < 50:
             incr = 1
@@ -56,8 +58,8 @@ def part1():
             incr = 10
         for i in range(0, largest_count, incr):
             line = align_r(str(i + 1) if incr == 1 else str(i) if i > 0 else '1', 6) + '|'
-            # Scale of counted rolls on the side of the histogram, i + 1 only if incr is 1 due to index starting from 0
-            # otherwise, use just incr for 2, 5, and 10, replacing only the starting index 0 with 1
+            # ^ Scale of counted rolls on the side of the histogram, i + 1 only if incr is 1 due to index starting
+            # from 0, otherwise, use just incr for 2, 5, and 10, replacing only the starting index 0 with 1
             for j in sushi_roll:
                 if sushi_roll[j] > i:
                     line += align_r('*', 5)  # * If the count for sushi_roll[j] reaches this increment
@@ -68,6 +70,41 @@ def part1():
 
 def part2():
     print('\n*** PART 2 ***')
+    department_data = open('C:/Users/gavto/Documents/GitHub/CS7Backup/torrecampoA9/a9data.txt', 'r')
+    dept_dict = {}
+    dept_dict_reverse = {}
+    line = department_data.readline()
+    while len(line) > 0:
+        dept_dict[line[0:5].strip()] = line[5:].rstrip()
+        dept_dict_reverse[line[5:].rstrip()] = line[0:5].strip()
+        line = department_data.readline()
+    # print(dept_dict)
+    print('(!) SEARCH department by abbreviation')
+    abbr = str(input('Enter dept abbreviation or "STOP": ')).upper()
+    while abbr.upper() != 'STOP':
+        found = False
+        for i in dept_dict:
+            if abbr == i:
+                print('*', abbr, '-->', dept_dict[i])
+                found = True
+        if not found:
+            print('Department name not found.')
+        abbr = str(input('Enter dept abbreviation or "STOP": ')).upper()
+    print('(x) exited abbr search')
+    # print(dept_dict_reverse)
+    print('(!) SEARCH department by name')
+    name = str(input('Enter dept name or "STOP": '))
+    while name.upper() != 'STOP':
+        found = False
+        for i in dept_dict_reverse:
+            if name.upper() == i.upper():
+                print('*', i, '-->', dept_dict_reverse[i])
+                found = True
+        if not found:
+            print('Department name not found.')
+        name = str(input('Enter dept name or "STOP": '))
+    print('(x) exited name search')
+    department_data.close()
 
 
 if __name__ == '__main__':
